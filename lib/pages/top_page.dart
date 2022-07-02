@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_message_sample_app/pages/sign_up_page.dart';
 
 class TopPage extends StatelessWidget {
   const TopPage({super.key});
@@ -14,7 +15,13 @@ class TopPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => const SignUpPage(),
+                  ),
+                );
+              },
               child: const Text('新規登録'),
             ),
             TextButton(
