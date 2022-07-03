@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_message_sample_app/controllers/sign_up_controller.dart';
+import 'package:flutter_message_sample_app/pages/base_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
@@ -45,6 +46,12 @@ class SignUpPage extends ConsumerWidget {
               onPressed: () async {
                 try {
                   await signUpController.signUp();
+                  await Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                      builder: (context) => const BasePage(),
+                    ),
+                    (route) => false,
+                  );
                 } catch (e) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
