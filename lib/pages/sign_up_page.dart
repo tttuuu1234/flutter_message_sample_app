@@ -22,18 +22,41 @@ class SignUpPage extends ConsumerWidget {
         child: Column(
           children: [
             TextFormField(
+              decoration: const InputDecoration(
+                hintText: 'Please enter your name',
+              ),
               controller: userNameController,
             ),
             TextFormField(
+              decoration: const InputDecoration(
+                hintText: 'Please enter your email',
+              ),
+              keyboardType: TextInputType.emailAddress,
               controller: emailController,
             ),
             TextFormField(
+              decoration: const InputDecoration(
+                hintText: 'Please enter your password',
+              ),
               controller: passwordConttoller,
             ),
             const Gap(10),
             ElevatedButton(
-              onPressed: () {
-                signUpController.signUp();
+              onPressed: () async {
+                try {
+                  await signUpController.signUp();
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      duration: const Duration(days: 5),
+                      content: Text(e.toString()),
+                      action: SnackBarAction(
+                        label: 'OK',
+                        onPressed: () {},
+                      ),
+                    ),
+                  );
+                }
               },
               child: const Text('Create an Account'),
             )
