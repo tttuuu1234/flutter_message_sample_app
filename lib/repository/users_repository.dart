@@ -3,6 +3,7 @@ import 'package:flutter_message_sample_app/providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 abstract class UsersRepository {
+  /// user作成
   Future<void> create({required String uid, required String name});
 }
 

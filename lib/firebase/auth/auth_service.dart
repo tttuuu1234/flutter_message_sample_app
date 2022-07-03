@@ -6,6 +6,7 @@ final authServiceProvider = Provider<AuthService>((ref) {
 });
 
 class AuthService {
+  /// 認証情報登録
   Future<UserCredential> signUp({
     required String emailAddress,
     required String password,
