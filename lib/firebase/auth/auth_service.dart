@@ -6,18 +6,15 @@ final authServiceProvider = Provider<AuthService>((ref) {
 });
 
 class AuthService {
-  Future<void> signUp({
+  Future<UserCredential> signUp({
     required String emailAddress,
     required String password,
   }) async {
     try {
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      return await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress,
         password: password,
       );
-      print('登録成功！');
-      print(credential);
     } on FirebaseAuthException catch (e) {
       throw FirebaseAuthException(
         code: e.code,
