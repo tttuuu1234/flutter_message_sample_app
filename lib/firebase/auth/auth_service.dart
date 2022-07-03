@@ -6,13 +6,15 @@ final authServiceProvider = Provider<AuthService>((ref) {
 });
 
 class AuthService {
+  final _instance = FirebaseAuth.instance;
+
   /// 認証情報登録
   Future<UserCredential> signUp({
     required String emailAddress,
     required String password,
   }) async {
     try {
-      return await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      return await _instance.createUserWithEmailAndPassword(
         email: emailAddress,
         password: password,
       );
@@ -24,5 +26,10 @@ class AuthService {
     } catch (e) {
       throw Exception('Account create failed');
     }
+  }
+
+  /// 認証済みユーザー情報の取得
+  User? fetchCurrentUser() {
+    return _instance.currentUser;
   }
 }
