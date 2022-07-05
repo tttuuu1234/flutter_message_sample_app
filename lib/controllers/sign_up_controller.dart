@@ -4,15 +4,9 @@ import 'package:flutter_message_sample_app/firebase/auth/auth_service.dart';
 import 'package:flutter_message_sample_app/repository/users_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../providers.dart';
+
 final userNameProvider = StateProvider<TextEditingController>((ref) {
-  return TextEditingController();
-});
-
-final emailProvider = StateProvider<TextEditingController>((ref) {
-  return TextEditingController();
-});
-
-final passwordProvider = StateProvider<TextEditingController>((ref) {
   return TextEditingController();
 });
 

@@ -1,35 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_message_sample_app/controllers/sign_up_controller.dart';
-import 'package:flutter_message_sample_app/pages/base_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
+import '../controllers/sign_in_controller.dart';
 import '../providers.dart';
+import 'base_page.dart';
 
-class SignUpPage extends ConsumerWidget {
-  const SignUpPage({super.key});
+class SignInPage extends ConsumerWidget {
+  const SignInPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userNameController = ref.watch(userNameProvider);
     final emailController = ref.watch(emailProvider);
     final passwordConttoller = ref.watch(passwordProvider);
-    final signUpController = ref.watch(signUpProvider);
+    final signInController = ref.watch(signInProvider);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign up'),
+        title: const Text('Sign in'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            TextFormField(
-              decoration: const InputDecoration(
-                hintText: 'Please enter your name',
-              ),
-              controller: userNameController,
-            ),
             TextFormField(
               decoration: const InputDecoration(
                 hintText: 'Please enter your email',
@@ -47,7 +40,11 @@ class SignUpPage extends ConsumerWidget {
             ElevatedButton(
               onPressed: () async {
                 try {
-                  await signUpController.signUp();
+                  final userCredential = await signInController.signIn();
+                  if (userCredential.user == null) {
+                    return;
+                  }
+
                   await Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
                       builder: (context) => const BasePage(),
@@ -67,7 +64,7 @@ class SignUpPage extends ConsumerWidget {
                   );
                 }
               },
-              child: const Text('Create an Account'),
+              child: const Text('Sign in'),
             )
           ],
         ),

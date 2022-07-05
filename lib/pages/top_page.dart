@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_message_sample_app/pages/sign_in_page.dart';
 import 'package:flutter_message_sample_app/pages/sign_up_page.dart';
 
 class TopPage extends StatelessWidget {
@@ -22,11 +23,17 @@ class TopPage extends StatelessWidget {
                   ),
                 );
               },
-              child: const Text('新規登録'),
+              child: const Text('Sign up'),
             ),
             TextButton(
-              onPressed: () {},
-              child: const Text('ログイン'),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => const SignInPage(),
+                  ),
+                );
+              },
+              child: const Text('Sign in'),
             )
           ],
         ),

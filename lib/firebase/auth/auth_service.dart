@@ -33,6 +33,26 @@ class AuthService {
     return _instance.currentUser;
   }
 
+  /// サインイン
+  Future<UserCredential> signIn({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      return await _instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on FirebaseAuthException catch (e) {
+      throw FirebaseAuthException(
+        code: e.code,
+        message: e.message,
+      );
+    } catch (e) {
+      throw Exception('SignIn failed');
+    }
+  }
+
   /// サインアウト
   Future<void> signOut() async {
     try {
