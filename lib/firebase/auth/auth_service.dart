@@ -32,4 +32,18 @@ class AuthService {
   User? fetchCurrentUser() {
     return _instance.currentUser;
   }
+
+  /// サインアウト
+  Future<void> signOut() async {
+    try {
+      await _instance.signOut();
+    } on FirebaseAuthException catch (e) {
+      throw FirebaseAuthException(
+        code: e.code,
+        message: e.message,
+      );
+    } catch (e) {
+      throw Exception('Signout failed');
+    }
+  }
 }
