@@ -34,7 +34,7 @@ class UsersPage extends ConsumerWidget {
                     //   todosNotifier,
                     // );
                   },
-                  icon: const Icon(Icons.edit),
+                  icon: const Icon(Icons.chat),
                 ),
               ),
             );
